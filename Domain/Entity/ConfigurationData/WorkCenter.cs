@@ -13,24 +13,24 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
         public string Name { get; set; }
         public string? Description { get; set; }
         public WorkMode WorkMode { get; set; }
-        public Guid Area { get; set; }
+        public Area Area { get; set; }
         public List<Unit> Units { get; set; }
         #endregion
 
         #region Constructors
-        public WorkCenter(string name, Guid area) : base()
+        public WorkCenter(string name, Area area) : base()
         {
             Name = name;
             Area = area;
             Units = new List<Unit>();
         }
-        public WorkCenter(Guid id, string name, Guid area) : base (id)
+        public WorkCenter(Guid id, string name, Area area) : base (id)
         {
             Name = name;
             Area = area;
             Units = new List<Unit>();
         }
-        public WorkCenter(string name, string? description, WorkMode workMode, Guid area, List<Unit> units) : base()
+        public WorkCenter(string name, string? description, WorkMode workMode, Area area, List<Unit> units) : base()
         {
             Name = name;
             Description = description;
@@ -38,7 +38,7 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
             Area = area;
             Units = units;
         }
-        public WorkCenter(Guid id, string name, string? description, WorkMode workMode, Guid area, List<Unit> units) : base(id)
+        public WorkCenter(Guid id, string name, string? description, WorkMode workMode, Area area, List<Unit> units) : base(id)
         {
             Name = name;
             Description = description;

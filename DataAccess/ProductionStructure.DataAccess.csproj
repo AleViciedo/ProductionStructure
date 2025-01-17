@@ -18,10 +18,4 @@
     <ProjectReference Include="..\Domain\ProductionStructure.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="FluentConfigurations\Common\" />
-    <Folder Include="FluentConfigurations\ConfigurationData\" />
-    <Folder Include="FluentConfigurations\HistoricalData\" />
-  </ItemGroup>
-
 </Project>

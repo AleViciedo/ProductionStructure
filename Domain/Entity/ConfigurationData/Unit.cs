@@ -13,52 +13,59 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
         public string Name { get; set; }
         public string? Manufacturer { get; set; }
         public string? Description { get; set; }
-        public Guid WorkCenter { get; set; }
-        public bool InUse { get; private set; }
+        public WorkCenter WorkCenter { get; set; }
+        public WorkSession? WorkSession { get; set; }
+        public bool InUse
+        {
+            get
+            {
+                return WorkSession != null;
+            }
+            set
+            {
+                if (WorkSession != null && value == false)
+                {
+                    WorkSession = null;
+                }
+                else if (WorkSession == null && value == true)
+                {
+                    WorkSession = new WorkSession(this);
+                }
+            }
+        }
         #endregion
 
         #region Constructors
-        public Unit(string name, Guid workCenter) : base()
+        public Unit(string name, WorkCenter workCenter) : base() //basic
         {
             Name = name;
             WorkCenter = workCenter;
         }
-        public Unit(Guid id, string name, Guid workCenter) : base (id)
+        public Unit(Guid id, string name, WorkCenter workCenter) : base (id) //basic with ID
         {
             Name = name;
             WorkCenter = workCenter;
         }
-        public Unit(string name, string? manufacturer, string? description, Guid workCenter) : base()
+        public Unit(string name, string? manufacturer, string? description, WorkCenter workCenter, WorkSession? workSession) : base() //full
         {
             Name = name;
             Manufacturer = manufacturer;
             Description = description;
             WorkCenter = workCenter;
+            WorkSession = workSession;
         }
-        public Unit(Guid id, string name, string? manufacturer, string? description, Guid workCenter) : base(id)
+        public Unit(Guid id, string name, string? manufacturer, string? description, WorkCenter workCenter, WorkSession? workSession) : base(id) //full with ID
         {
             Name = name;
             Manufacturer = manufacturer;
             Description = description;
             WorkCenter = workCenter;
+            WorkSession = workSession;
         }
         #endregion
 
         #region Methods
-        public WorkSession StartProcess()
-        {
-            InUse = true;
-            return new WorkSession(this.Id);
-        }
-
-        public bool EndProcess(WorkSession workSession)
-        {
-            if (workSession.Unit != this.Id)
-                return false;
-            workSession.EndDate = DateTime.Now;
-            InUse = false;
-            return true;
-        }
+       
         #endregion
     }
 }

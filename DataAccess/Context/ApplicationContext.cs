@@ -5,7 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Internal;
+using ProductionStructure.DataAccess.FluentConfigurations.ConfigurationData;
+using ProductionStructure.DataAccess.FluentConfigurations.HistoricalData;
 using ProductionStructure.Domain.Entity.ConfigurationData;
 using ProductionStructure.Domain.Entity.HistoricalData;
 
@@ -43,7 +46,18 @@ namespace DataAccess.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new SiteEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new AreaEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new WorkCenterEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new UnitEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new WorkSessionEntityTypeConfiguration());
         }
+
+        //public override EntityEntry Add(object entity)
+        //{
+        //    return base.Add(entity);
+        //}
         #endregion
 
         #region Helpers
