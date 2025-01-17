@@ -13,38 +13,49 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
         public string Name { get; set; }
         public string? Description { get; set; }
         public WorkMode WorkMode { get; set; }
-        public Area Area { get; set; }
         public List<Unit> Units { get; set; }
         #endregion
 
+        #region Relational Properties
+        /// <summary>
+        /// Foreign Key to its related Area
+        /// </summary>
+        public Guid AreaId { get; set; }
+        public Area Area { get; set; }
+        #endregion
+
         #region Constructors
-        public WorkCenter(string name, Area area) : base()
+        public WorkCenter(string name, Area area) : base() //basic
         {
             Name = name;
             Area = area;
             Units = new List<Unit>();
+            AreaId = Area.Id;
         }
-        public WorkCenter(Guid id, string name, Area area) : base (id)
+        public WorkCenter(Guid id, string name, Area area) : base (id) //basic with ID
         {
             Name = name;
             Area = area;
             Units = new List<Unit>();
+            AreaId = Area.Id;
         }
-        public WorkCenter(string name, string? description, WorkMode workMode, Area area, List<Unit> units) : base()
+        public WorkCenter(string name, string? description, WorkMode workMode, Area area, List<Unit> units) : base() //full
         {
             Name = name;
             Description = description;
             WorkMode = workMode;
             Area = area;
             Units = units;
+            AreaId = Area.Id;
         }
-        public WorkCenter(Guid id, string name, string? description, WorkMode workMode, Area area, List<Unit> units) : base(id)
+        public WorkCenter(Guid id, string name, string? description, WorkMode workMode, Area area, List<Unit> units) : base(id) //full with ID
         {
             Name = name;
             Description = description;
             WorkMode = workMode;
             Area = area;
             Units = units;
+            AreaId = Area.Id;
         }
         #endregion
     }

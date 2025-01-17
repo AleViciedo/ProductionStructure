@@ -10,9 +10,16 @@ namespace ProductionStructure.Domain.Entity.HistoricalData
     public class WorkSession : Common.Entity
     {
         #region Properties
-        public Unit Unit { get; }
         public DateTime InitDate { get; }
         public DateTime? EndDate { get; set; }
+        #endregion
+
+        #region Relational Properties
+        /// <summary>
+        /// Foreign Key to its related Unit
+        /// </summary>
+        public Guid UnitId { get; set; }
+        public Unit Unit { get; }
         #endregion
 
         #region Constructors

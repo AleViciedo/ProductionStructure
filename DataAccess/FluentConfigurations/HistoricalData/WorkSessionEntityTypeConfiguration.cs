@@ -15,7 +15,7 @@ namespace ProductionStructure.DataAccess.FluentConfigurations.HistoricalData
         public override void Configure(EntityTypeBuilder<WorkSession> builder)
         {
             builder.ToTable("Work Sessions");
-            builder.HasOne(x => x.Unit).WithMany().HasForeignKey(x => x.Unit);
+            builder.HasOne(ws => ws.Unit).WithMany(u => u.WorkSessions).HasForeignKey(ws => ws.UnitId);
             base.Configure(builder);
         }
     }
