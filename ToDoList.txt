@@ -1,0 +1,1 @@
+Rehacer los constructores del Domain para eliminar los innecesarios. Usar parametros por defecto

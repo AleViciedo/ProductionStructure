@@ -28,7 +28,7 @@ namespace ProductionStructure.Domain.Common
         /// </summary>
         protected Entity()
         {
-
+            Id = Guid.NewGuid();
         }
 
         /// <summary>
