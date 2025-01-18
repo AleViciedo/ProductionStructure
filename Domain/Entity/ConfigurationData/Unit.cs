@@ -19,6 +19,7 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
         #endregion
 
         #region Relational Properties
+        public Guid? CurrentWorkSessionId { get; set; } //Id for foreign key to use in EF Core relationship
         /// <summary>
         /// Foreign Key to its related WorkCenter
         /// </summary>
@@ -27,6 +28,9 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
         #endregion
 
         #region Constructors
+        private Unit() : base() //Constructor without parameters, required by EF Core
+        {
+        }
         public Unit(string name, WorkCenter workCenter) : base() //basic
         {
             Name = name;
@@ -46,6 +50,7 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
             Description = description;
             WorkCenter = workCenter;
             CurrentWorkSession = currentWorkSession;
+            CurrentWorkSessionId = CurrentWorkSession.Id;
             WorkCenterId = WorkCenter.Id;
             WorkSessions = workSessions;
         }
@@ -56,6 +61,7 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
             Description = description;
             WorkCenter = workCenter;
             CurrentWorkSession = currentWorkSession;
+            CurrentWorkSessionId = CurrentWorkSession.Id;
             WorkCenterId = WorkCenter.Id;
             WorkSessions = workSessions;
         }
@@ -68,7 +74,8 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
             {
                 var newSession = new WorkSession(this); //crea una variable separada en memoria de CurrentWorkSession que pasar por referencia a la List<WorkSession>
                 CurrentWorkSession = newSession;
-                WorkSessions.Add(newSession);
+                if(!WorkSessions.Contains(newSession))
+                    WorkSessions.Add(newSession);
             }
         }
 

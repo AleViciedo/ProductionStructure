@@ -23,6 +23,9 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
         #endregion
 
         #region Constructors
+        private Area() : base() //Constructor without parameters, required by EF Core
+        {
+        }
         public Area(string name, Site site) : base() //basic
         {
             Name = name;

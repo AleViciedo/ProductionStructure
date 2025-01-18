@@ -23,6 +23,9 @@ namespace ProductionStructure.Domain.Entity.HistoricalData
         #endregion
 
         #region Constructors
+        private WorkSession() : base() //Constructor without parameters, required by EF Core
+        {
+        }
         public WorkSession(Guid id, Unit unit) : base (id)
         {
             Unit = unit;

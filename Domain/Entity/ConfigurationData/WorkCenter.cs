@@ -25,6 +25,9 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
         #endregion
 
         #region Constructors
+        private WorkCenter() : base() //Constructor without parameters, required by EF Core
+        {
+        }
         public WorkCenter(string name, Area area) : base() //basic
         {
             Name = name;

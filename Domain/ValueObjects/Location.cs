@@ -13,6 +13,9 @@ namespace ProductionStructure.Domain.ValueObjects
         public string City { get; set; }
         public string Address { get; set; }
 
+        private Location() //Constructor without parameters, required by EF Core
+        {
+        }
         public Location(Country country, string city, string address)
         {
             Country = country;
