@@ -50,7 +50,8 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
             Description = description;
             WorkCenter = workCenter;
             CurrentWorkSession = currentWorkSession;
-            CurrentWorkSessionId = CurrentWorkSession.Id;
+            if (CurrentWorkSession != null)
+                CurrentWorkSessionId = CurrentWorkSession.Id;
             WorkCenterId = WorkCenter.Id;
             WorkSessions = workSessions;
         }

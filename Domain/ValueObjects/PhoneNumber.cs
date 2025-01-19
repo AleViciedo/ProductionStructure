@@ -20,8 +20,17 @@ namespace ProductionStructure.Domain.ValueObjects
         public PhoneNumber(string phone)
         {
             string[] input = phone.Split(' ');
-            Country = input[0];
-            Phone = input[1];
+            if (input.Length == 1)
+            {
+                Phone = input[0];
+            }
+            else if (input.Length == 2)
+            {
+                Country = input[0];
+                Phone = input[1];
+            }
+            else
+                throw new ArgumentException("Invalid Phone format");
         }
 
         public override string ToString()
