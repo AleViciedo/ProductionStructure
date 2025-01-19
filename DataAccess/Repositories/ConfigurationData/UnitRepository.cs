@@ -2,6 +2,7 @@
 using ProductionStructure.Contracts.ConfigurationData;
 using ProductionStructure.DataAccess.Repositories.Common;
 using ProductionStructure.Domain.Entity.ConfigurationData;
+using ProductionStructure.Domain.Entity.HistoricalData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,18 +35,38 @@ namespace ProductionStructure.DataAccess.Repositories.ConfigurationData
 
         public void UpdateUnit(Unit unit)
         {
-            Unit? previousUnit = _context.Units.FirstOrDefault(u => u.Id == unit.Id);
-            if(previousUnit != null)
+            if (!unit.InUse)
             {
-                if (previousUnit.InUse && !unit.InUse) //MarkAsNotInUse
+                if (unit.CurrentWorkSessionId != null)
                 {
-                    _context.WorkSessions.Update(unit.WorkSessions.FirstOrDefault(ws => ws.Id == previousUnit.CurrentWorkSessionId));
-                }
-                else if (!previousUnit.InUse && unit.InUse)
-                {
-                    _context.WorkSessions.Add(unit.CurrentWorkSession);
+                    WorkSession workSession = _context.WorkSessions.FirstOrDefault(ws => ws.Id == unit.CurrentWorkSessionId);
+                    _context.WorkSessions.Update(workSession);
                 }
             }
+            else if (!_context.WorkSessions.Contains(unit.CurrentWorkSession))
+            {
+                _context.WorkSessions.Add(unit.CurrentWorkSession);
+            }
+            //if(!_context.WorkSessions.Contains(unit.CurrentWorkSession))
+            //    _context.WorkSessions.Add(unit.CurrentWorkSession);
+            //else
+            //{
+            //    _context.WorkSessions.Update(unit.WorkSessions.Last());
+            //}
+            //UnitRepository unitRepository = new UnitRepository(_context);
+            //Unit? previousUnit = unitRepository.GetUnitById(unit.Id);
+            //if(previousUnit != null)
+            //{
+            //    if (previousUnit.InUse && !unit.InUse) //MarkAsNotInUse
+            //    {
+            //        _context.WorkSessions.Update(unit.WorkSessions.FirstOrDefault(ws => ws.Id == previousUnit.CurrentWorkSessionId));
+            //    }
+            //    else if (!previousUnit.InUse && unit.InUse)
+            //    {
+            //        _context.WorkSessions.Add(unit.CurrentWorkSession);
+            //    }
+            //}
+            unit.CurrentWorkSessionId = null;
             _context.Units.Update(unit);
         }
 

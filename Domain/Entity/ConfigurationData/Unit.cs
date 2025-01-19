@@ -87,7 +87,6 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
             {
                 CurrentWorkSession.EndDate = DateTime.Now; //actualiza la variable, a la que tambien se apunta desde una posicion de la List<WorkSession>
                 CurrentWorkSession = null;
-                CurrentWorkSessionId = null;
             }
         }
         #endregion
