@@ -15,7 +15,7 @@ namespace ProductionStructure.DataAccess.FluentConfigurations.ConfigurationData
         public override void Configure(EntityTypeBuilder<WorkCenter> builder)
         {
             builder.ToTable("Work Centers");
-            builder.HasMany(wc => wc.Units).WithOne(u => u.WorkCenter).HasForeignKey(u => u.Id);
+            builder.HasMany(wc => wc.Units).WithOne(u => u.WorkCenter).HasForeignKey(u => u.Id).OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(x => x.Area).WithMany(x => x.WorkCenters).HasForeignKey(x => x.AreaId);
             base.Configure(builder);
         }

@@ -31,7 +31,7 @@ namespace ProductionStructure.DataAccess.FluentConfigurations.ConfigurationData
             });
             builder.OwnsOne(s => s.Email);
             builder.OwnsOne(s => s.PhoneNumber);
-            builder.HasMany(s => s.Areas).WithOne(a => a.Site).HasForeignKey(a => a.Id);
+            builder.HasMany(s => s.Areas).WithOne(a => a.Site).HasForeignKey(a => a.Id).OnDelete(DeleteBehavior.Cascade);
             base.Configure(builder);
         }
     }

@@ -62,6 +62,26 @@ namespace ProductionStructure.ConsoleApp
             context.Units.Add(Unit8);
 
             context.SaveChanges();
+
+            Unit? ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
+            Area? ReadArea = context.Set<Area>().FirstOrDefault(a => a.Id == Area1.Id);
+
+            Console.ReadLine();
+
+            Unit3.Description = "Maquina que hace tinta con alcohol";
+            context.Units.Update(Unit3);
+            context.SaveChanges();
+            
+            ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
+
+            Console.ReadLine();
+
+            context.Units.Remove(Unit3);
+            context.SaveChanges();
+
+            ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
+
+            Console.ReadLine();
         }
     }
 }
