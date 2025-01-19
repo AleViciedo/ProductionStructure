@@ -75,6 +75,7 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
             {
                 var newSession = new WorkSession(this); //crea una variable separada en memoria de CurrentWorkSession que pasar por referencia a la List<WorkSession>
                 CurrentWorkSession = newSession;
+                CurrentWorkSessionId = newSession.Id;
                 if(!WorkSessions.Contains(newSession))
                     WorkSessions.Add(newSession);
             }
@@ -86,6 +87,7 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
             {
                 CurrentWorkSession.EndDate = DateTime.Now; //actualiza la variable, a la que tambien se apunta desde una posicion de la List<WorkSession>
                 CurrentWorkSession = null;
+                CurrentWorkSessionId = null;
             }
         }
         #endregion

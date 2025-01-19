@@ -5,6 +5,9 @@ using DataAccess.Context;
 using ProductionStructure.Domain.Entity.ConfigurationData;
 using ProductionStructure.Domain.ValueObjects;
 using ProductionStructure.Domain.Entity.HistoricalData;
+using ProductionStructure.DataAccess;
+using ProductionStructure.DataAccess.Repositories.ConfigurationData;
+using ProductionStructure.DataAccess.Repositories.HistoricalData;
 
 namespace ProductionStructure.ConsoleApp
 {
@@ -12,6 +15,7 @@ namespace ProductionStructure.ConsoleApp
     {
         static void Main(string[] args)
         {
+            #region Example DB
             ApplicationContext context = new ApplicationContext("Data Source=ProductionStructureDB.sqlite");
             if (!context.Database.CanConnect())
                 context.Database.Migrate();
@@ -62,26 +66,65 @@ namespace ProductionStructure.ConsoleApp
             context.Units.Add(Unit8);
 
             context.SaveChanges();
+            #endregion
 
-            Unit? ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
-            Area? ReadArea = context.Set<Area>().FirstOrDefault(a => a.Id == Area1.Id);
+            #region CRUD Tests
+            //Unit? ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
+            //Area? ReadArea = context.Set<Area>().FirstOrDefault(a => a.Id == Area1.Id);
 
-            Console.ReadLine();
+            //Console.ReadLine();
 
-            Unit3.Description = "Maquina que hace tinta con alcohol";
-            context.Units.Update(Unit3);
-            context.SaveChanges();
+            //Unit3.Description = "Maquina que hace tinta con alcohol";
+            //context.Units.Update(Unit3);
+            //context.SaveChanges();
+
+            //ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
+
+            //Console.ReadLine();
+
+            //context.Units.Remove(Unit3);
+            //context.SaveChanges();
+
+            //ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
+
+            //Console.ReadLine();
+            #endregion
+
+            #region InUse => WorkSession Test
+            //Unit2.MarkAsInUse();
+            //context.Units.Update(Unit2);
+            //WorkSession WorkSession1 = Unit2.CurrentWorkSession;
+            //context.WorkSessions.Add(WorkSession1);
+            //context.SaveChanges();
+
+            //Console.ReadLine();
+            #endregion
+
+            #region CRUD over Repositories
+            //UnitOfWork UnitOfWork1 = new UnitOfWork(context);
+            //UnitRepository UnitRepository1 = new UnitRepository(context);
+
+            //Unit? ReadUnit = UnitRepository1.GetUnitById(Unit3.Id);
+
+            //Console.ReadLine();
+
+            //Unit3.Description = "Maquina que hace tinta con alcohol";
+            //UnitRepository1.UpdateUnit(Unit3);
+            //UnitOfWork1.SaveChanges();
+
+            //ReadUnit = UnitRepository1.GetUnitById(Unit3.Id);
+
+            //Console.ReadLine();
+
+            //UnitRepository1.DeleteUnit(Unit3);
+            //UnitOfWork1.SaveChanges();
+
+            //ReadUnit = UnitRepository1.GetUnitById(Unit3.Id);
+
+            //Console.ReadLine();
+            #endregion
+
             
-            ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
-
-            Console.ReadLine();
-
-            context.Units.Remove(Unit3);
-            context.SaveChanges();
-
-            ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
-
-            Console.ReadLine();
         }
     }
 }

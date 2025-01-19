@@ -19,9 +19,4 @@
     <ProjectReference Include="..\Domain\ProductionStructure.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\ConfigurationData\" />
-    <Folder Include="Repositories\HistoricalData\" />
-  </ItemGroup>
-
 </Project>
