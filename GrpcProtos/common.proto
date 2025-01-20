@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option csharp_namespace = "CarDealer.GrpcProtos";
+
+package GrpcProtos;
+
+message GetRequest{
+	string id = 1;
+}
+
+message DeleteRequest{
+	string id = 1;
+}
+
+message Email{
+	string user = 1;
+	string server = 2;
+}
+
+message Phone{
+	string code = 1;
+	string number = 2;
+}
+
+enum WorkMode{
+	Continuous = 0;
+	Discrete = 1;
+	PerLot = 2;
+}
+
+message Location{
+	Country country = 1;
+	string city = 2;
+	string address = 3;
+}
+
