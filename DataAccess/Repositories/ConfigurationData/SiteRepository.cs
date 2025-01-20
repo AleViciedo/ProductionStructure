@@ -1,5 +1,5 @@
-using Contracts;
 using DataAccess.Context;
+using ProductionStructure.Contracts.ConfigurationData;
 using ProductionStructure.DataAccess.Repositories.Common;
 using ProductionStructure.Domain.Entity.ConfigurationData;
 using System;
