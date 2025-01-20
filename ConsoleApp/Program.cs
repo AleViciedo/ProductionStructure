@@ -5,6 +5,9 @@ using DataAccess.Context;
 using ProductionStructure.Domain.Entity.ConfigurationData;
 using ProductionStructure.Domain.ValueObjects;
 using ProductionStructure.Domain.Entity.HistoricalData;
+using ProductionStructure.DataAccess;
+using ProductionStructure.DataAccess.Repositories.ConfigurationData;
+using ProductionStructure.DataAccess.Repositories.HistoricalData;
 
 namespace ProductionStructure.ConsoleApp
 {
@@ -12,10 +15,11 @@ namespace ProductionStructure.ConsoleApp
     {
         static void Main(string[] args)
         {
+            #region Example DB
             ApplicationContext context = new ApplicationContext("Data Source=ProductionStructureDB.sqlite");
             if (!context.Database.CanConnect())
                 context.Database.Migrate();
-            Location Location1 = new Location(new CountryData.Standard.Country(), "Ciudad de las risas", "Calle 48 #4893 % C y D");
+            Location Location1 = new Location(new CountryData.Standard.CountryHelper().GetCountryByCode("CU"), "Ciudad de las risas", "Calle 48 #4893 % C y D");
             Site Site1 = new Site("Fabrica de cosas", Location1, new Email("FabricaDeCosas", "ServerLibre.com"), new PhoneNumber("+5375342918"), new List<Area>());
             Area Area1 = new Area("Area de materias primas", Site1, new List<WorkCenter>());
             Area Area2 = new Area("Area de manufactura", Site1, new List<WorkCenter>());
@@ -62,26 +66,93 @@ namespace ProductionStructure.ConsoleApp
             context.Units.Add(Unit8);
 
             context.SaveChanges();
+            #endregion
 
-            Unit? ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
-            Area? ReadArea = context.Set<Area>().FirstOrDefault(a => a.Id == Area1.Id);
+            #region CRUD Tests
+            //Unit? ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
+            //Area? ReadArea = context.Set<Area>().FirstOrDefault(a => a.Id == Area1.Id);
+
+            //Console.ReadLine();
+
+            //Unit3.Description = "Maquina que hace tinta con alcohol";
+            //context.Units.Update(Unit3);
+            //context.SaveChanges();
+
+            //ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
+
+            //Console.ReadLine();
+
+            //context.Units.Remove(Unit3);
+            //context.SaveChanges();
+
+            //ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
+
+            //Console.ReadLine();
+            #endregion
+
+            #region InUse => WorkSession Test
+            //Unit2.MarkAsInUse();
+            //context.Units.Update(Unit2);
+            //WorkSession WorkSession1 = Unit2.CurrentWorkSession;
+            //context.WorkSessions.Add(WorkSession1);
+            //context.SaveChanges();
+
+            //Console.ReadLine();
+            #endregion
+
+            #region CRUD over Repositories (Unit, WorkSession)
+            //UnitOfWork UnitOfWork1 = new UnitOfWork(context);
+            //UnitRepository UnitRepository1 = new UnitRepository(context);
+
+            //Unit? ReadUnit = UnitRepository1.GetUnitById(Unit3.Id);
+
+            //Console.ReadLine();
+
+            //Unit3.Description = "Maquina que hace tinta con alcohol";
+            //UnitRepository1.UpdateUnit(Unit3);
+            //UnitOfWork1.SaveChanges();
+
+            //ReadUnit = UnitRepository1.GetUnitById(Unit3.Id);
+
+            //Console.ReadLine();
+
+            //UnitRepository1.DeleteUnit(Unit3);
+            //UnitOfWork1.SaveChanges();
+
+            //ReadUnit = UnitRepository1.GetUnitById(Unit3.Id);
+
+            //Console.ReadLine();
+            #endregion
+
+            #region InUse => WorkSession over Repositories
+            UnitOfWork UnitOfWork1 = new UnitOfWork(context);
+            UnitRepository UnitRepository1 = new UnitRepository(context);
+            WorkSessionRepository WorkSessionRepository1 = new WorkSessionRepository(context);
+            UnitOfWork1.SaveChanges();
+
+            Unit? ReadUnit = UnitRepository1.GetUnitById(Unit2.Id);
+
+            Console.WriteLine(Object.ReferenceEquals(Unit2, ReadUnit));
+            Console.ReadLine();
+
+            Unit2.MarkAsInUse();
+            UnitRepository1.UpdateUnit(Unit2);
+            UnitOfWork1.SaveChanges();
+
+            ReadUnit = UnitRepository1.GetUnitById(Unit2.Id);
+            IEnumerable<WorkSession> ReadWorkSessions = WorkSessionRepository1.GetAllWorkSessions();
 
             Console.ReadLine();
 
-            Unit3.Description = "Maquina que hace tinta con alcohol";
-            context.Units.Update(Unit3);
-            context.SaveChanges();
-            
-            ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
+            Unit2.MarkAsNotInUse();
+            UnitRepository1.UpdateUnit(Unit2);
+            UnitOfWork1.SaveChanges();
 
-            Console.ReadLine();
+            ReadUnit = UnitRepository1.GetUnitById(Unit2.Id);
+            ReadWorkSessions = WorkSessionRepository1.GetAllWorkSessions();
 
-            context.Units.Remove(Unit3);
-            context.SaveChanges();
+            #endregion
 
-            ReadUnit = context.Set<Unit>().FirstOrDefault(u => u.Id == Unit3.Id);
-
-            Console.ReadLine();
         }
     }
 }

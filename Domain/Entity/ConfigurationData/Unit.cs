@@ -75,6 +75,7 @@ namespace ProductionStructure.Domain.Entity.ConfigurationData
             {
                 var newSession = new WorkSession(this); //crea una variable separada en memoria de CurrentWorkSession que pasar por referencia a la List<WorkSession>
                 CurrentWorkSession = newSession;
+                CurrentWorkSessionId = newSession.Id;
                 if(!WorkSessions.Contains(newSession))
                     WorkSessions.Add(newSession);
             }
