@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="ConfigurationData\Areas\" />
+    <Folder Include="ConfigurationData\" />
+    <Folder Include="HistoricalData\" />
+    <Folder Include="ConfigurationData\Sites\" />
+    <Folder Include="ConfigurationData\WorkCenters\" />
+    <Folder Include="ConfigurationData\Units\" />
+    <Folder Include="HistoricalData\WorkSessions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.3.0" />
+  </ItemGroup>
+
+</Project>
