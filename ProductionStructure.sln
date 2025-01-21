@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductionStructure.DataAcc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductionStructure.ConsoleApp", "ConsoleApp\ProductionStructure.ConsoleApp.csproj", "{4AAFE2A2-2D1A-447F-B222-2359341B601A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductionStructure.Contracts", "Contracts\ProductionStructure.Contracts.csproj", "{632151DC-05F0-4309-9960-D1892F11DC44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductionStructure.Contracts", "Contracts\ProductionStructure.Contracts.csproj", "{632151DC-05F0-4309-9960-D1892F11DC44}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductionStructure.GrpcProtos", "GrpcProtos\ProductionStructure.GrpcProtos.csproj", "{DB870F6A-53A6-44B5-B633-801F0221928A}"
 EndProject

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "ProductionStructure.GrpcProtos";
+
+package GrpcProtos;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "Common/common.proto";
+import "Common/entities.proto";
+
+service Unit{
+	rpc CreateUnit (CreateUnitRequest) returns (UnitDTO);
+	rpc GetUnit (GetRequest) returns (NullableUnitDTO);
+	rpc GetAllUnits (google.protobuf.Empty) returns (Units);
+	rpc UpdateUnit (UnitDTO) returns (google.protobuf.Empty);
+	rpc DeleteUnit (DeleteRequest) returns (google.protobuf.Empty);
+}
+
+message CreateUnitRequest{
+	string name = 1;
+	WorkCenterDTO workcenter = 2;
+}
