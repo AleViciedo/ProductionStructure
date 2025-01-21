@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\ProductionStructure.Application.csproj" />
     <ProjectReference Include="..\Contracts\ProductionStructure.Contracts.csproj" />
     <ProjectReference Include="..\DataAccess\ProductionStructure.DataAccess.csproj" />
     <ProjectReference Include="..\GrpcProtos\ProductionStructure.GrpcProtos.csproj" />

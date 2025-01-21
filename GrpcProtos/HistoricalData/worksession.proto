@@ -21,4 +21,5 @@ service WorkSession{
 
 message CreateWorkSessionRequest{
 	google.protobuf.Timestamp initdate = 1;
+	UnitDTO unit = 2;
 }
