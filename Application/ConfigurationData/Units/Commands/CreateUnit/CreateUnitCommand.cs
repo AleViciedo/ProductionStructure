@@ -1,12 +1,13 @@
-﻿using System;
+﻿using ProductionStructure.Application.Abstract;
+using ProductionStructure.Domain.Entity.ConfigurationData;
+using ProductionStructure.Domain.Entity.HistoricalData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductionStructure.Application.HistoricalData.WorkSessions.Commands.CreateWorkSession
+namespace ProductionStructure.Application.ConfigurationData.Units.Commands.CreateWorkSession
 {
-    internal class CreateUnitCommand
-    {
-    }
+    public record CreateUnitCommand(string Name, Domain.Entity.ConfigurationData.WorkCenter WorkCenter) : ICommand<Unit>;
 }

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using ProductionStructure.Application.Abstract;
+using ProductionStructure.Domain.Entity.ConfigurationData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductionStructure.Application.HistoricalData.WorkSessions.Commands.UpdateWorkSession
+namespace ProductionStructure.Application.ConfigurationData.Sites.Commands.UpdateSite
 {
-    internal class UpdateSiteCommand
-    {
-    }
+    public record UpdateSiteCommand(Site Site) : ICommand;
 }

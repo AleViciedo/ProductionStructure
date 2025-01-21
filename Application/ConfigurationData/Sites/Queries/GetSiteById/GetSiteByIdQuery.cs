@@ -1,12 +1,12 @@
-﻿using System;
+﻿using ProductionStructure.Domain.Entity.ConfigurationData;
+using ProductionStructure.Application.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductionStructure.Application.HistoricalData.WorkSessions.Queries.GetWorkSessionById
+namespace ProductionStructure.Application.ConfigurationData.Sites.Queries.GetSiteById
 {
-    internal class GetSiteByIdQuery
-    {
-    }
+    public record GetSiteById(Guid Id) : IQuery<Site?>;
 }

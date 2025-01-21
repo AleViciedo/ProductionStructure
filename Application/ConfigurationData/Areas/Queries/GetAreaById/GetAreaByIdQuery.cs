@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProductionStructure.Application.Abstract;
+using ProductionStructure.Domain.Entity.ConfigurationData;
 
-namespace ProductionStructure.Application.HistoricalData.WorkSessions.Queries.GetWorkSessionById
+namespace ProductionStructure.Application.ConfigurationData.Areas.Queries.GetAreaById
 {
-    internal class GetAreaByIdQuery
-    {
-    }
+    public record GetAreaById(Guid Id) : IQuery<Area?>;
 }

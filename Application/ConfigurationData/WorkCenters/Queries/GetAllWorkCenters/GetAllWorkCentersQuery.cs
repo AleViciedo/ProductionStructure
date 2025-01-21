@@ -1,12 +1,12 @@
-﻿using System;
+﻿using ProductionStructure.Application.Abstract;
+using ProductionStructure.Domain.Entity.ConfigurationData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductionStructure.Application.HistoricalData.WorkSessions.Queries.GetAllWorkSessions
+namespace ProductionStructure.Application.ConfigurationData.WorkCenters.Queries.GetAllWorkCenters
 {
-    internal class GetAllWorkCentersQuery
-    {
-    }
+    public record GetAllWorkCentersQuery() : IQuery<IEnumerable<Domain.Entity.ConfigurationData.WorkCenter>>;
 }

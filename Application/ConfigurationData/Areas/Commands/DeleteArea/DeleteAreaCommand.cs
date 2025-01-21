@@ -1,12 +1,11 @@
-﻿using System;
+﻿using ProductionStructure.Application.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductionStructure.Application.HistoricalData.WorkSessions.Commands.DeleteWorkSession
+namespace ProductionStructure.Application.ConfigurationData.Areas.Commands.DeleteWorkSession
 {
-    internal class DeleteAreaCommand
-    {
-    }
+    public record DeleteAreaCommand(Guid Id) : ICommand;
 }
