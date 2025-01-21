@@ -126,34 +126,71 @@ namespace ProductionStructure.ConsoleApp
             #endregion
 
             #region InUse => WorkSession over Repositories
-            UnitOfWork UnitOfWork1 = new UnitOfWork(context);
-            UnitRepository UnitRepository1 = new UnitRepository(context);
-            WorkSessionRepository WorkSessionRepository1 = new WorkSessionRepository(context);
-            UnitOfWork1.SaveChanges();
+            //UnitOfWork UnitOfWork1 = new UnitOfWork(context);
+            //UnitRepository UnitRepository1 = new UnitRepository(context);
+            //WorkSessionRepository WorkSessionRepository1 = new WorkSessionRepository(context);
+            //UnitOfWork1.SaveChanges();
 
-            Unit? ReadUnit = UnitRepository1.GetUnitById(Unit2.Id);
+            //Unit? ReadUnit = UnitRepository1.GetUnitById(Unit2.Id);
 
-            Console.WriteLine(Object.ReferenceEquals(Unit2, ReadUnit));
-            Console.ReadLine();
+            //Console.WriteLine(Object.ReferenceEquals(Unit2, ReadUnit));
+            //Console.ReadLine();
 
-            Unit2.MarkAsInUse();
-            UnitRepository1.UpdateUnit(Unit2);
-            UnitOfWork1.SaveChanges();
+            //Unit2.MarkAsInUse();
+            //UnitRepository1.UpdateUnit(Unit2);
+            //UnitOfWork1.SaveChanges();
 
-            ReadUnit = UnitRepository1.GetUnitById(Unit2.Id);
-            IEnumerable<WorkSession> ReadWorkSessions = WorkSessionRepository1.GetAllWorkSessions();
+            //ReadUnit = UnitRepository1.GetUnitById(Unit2.Id);
+            //IEnumerable<WorkSession> ReadWorkSessions = WorkSessionRepository1.GetAllWorkSessions();
 
-            Console.ReadLine();
+            //Console.ReadLine();
 
-            Unit2.MarkAsNotInUse();
-            UnitRepository1.UpdateUnit(Unit2);
-            UnitOfWork1.SaveChanges();
+            //Unit2.MarkAsNotInUse();
+            //UnitRepository1.UpdateUnit(Unit2);
+            //UnitOfWork1.SaveChanges();
 
-            ReadUnit = UnitRepository1.GetUnitById(Unit2.Id);
-            ReadWorkSessions = WorkSessionRepository1.GetAllWorkSessions();
+            //ReadUnit = UnitRepository1.GetUnitById(Unit2.Id);
+            //ReadWorkSessions = WorkSessionRepository1.GetAllWorkSessions();
 
             #endregion
 
+            #region CRUD over Repositories (Site, Area, WorkCenter)
+            UnitOfWork UnitOfWork1 = new UnitOfWork(context);
+            SiteRepository SiteRepository1 = new SiteRepository(context);
+            AreaRepository AreaRepository1 = new AreaRepository(context);
+            WorkCenterRepository WorkCenterRepository1 = new WorkCenterRepository(context);
+
+            Site? ReadSite = SiteRepository1.GetSiteById(Site1.Id);
+            Area? ReadArea = AreaRepository1.GetAreaById(Area2.Id);
+            WorkCenter? ReadWorkCenter = WorkCenterRepository1.GetWorkCenterById(WorkCenter3.Id);
+
+            Console.ReadLine();
+
+            Site1.Location.City = "Ciudad Gotica";
+            SiteRepository1.UpdateSite(Site1);
+            Area2.Name = "Area de recreo";
+            AreaRepository1.UpdateArea(Area2);
+            WorkCenter3.Description = "Centro de Realidad Virtual";
+            WorkCenterRepository1.UpdateWorkCenter(WorkCenter3);
+            UnitOfWork1.SaveChanges();
+
+            ReadSite = SiteRepository1.GetSiteById(Site1.Id);
+            ReadArea = AreaRepository1.GetAreaById(Area2.Id);
+            ReadWorkCenter = WorkCenterRepository1.GetWorkCenterById(WorkCenter3.Id);
+
+            Console.ReadLine();
+
+            SiteRepository1.DeleteSite(Site1);
+            AreaRepository1.DeleteArea(Area2);
+            WorkCenterRepository1.DeleteWorkCenter(WorkCenter3);
+            UnitOfWork1.SaveChanges();
+
+            ReadSite = SiteRepository1.GetSiteById(Site1.Id);
+            ReadArea = AreaRepository1.GetAreaById(Area2.Id);
+            ReadWorkCenter = WorkCenterRepository1.GetWorkCenterById(WorkCenter3.Id);
+
+            Console.ReadLine();
+            #endregion
         }
     }
 }
