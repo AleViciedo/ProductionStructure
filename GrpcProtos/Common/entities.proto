@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+option csharp_namespace = "ProductionStructure.GrpcProtos";
+
+package GrpcProtos;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/Timestamp.proto";
+import "Common/common.proto";
+
+message WorkSessionDTO{
+	Guid id = 1;
+	google.protobuf.Timestamp initdate = 2;
+	message enddate{
+		oneof kind{
+				google.protobuf.NullValue null = 1;
+				google.protobuf.Timestamp enddate = 2;
+		}
+	}
+}
+
+message WorkSessions{
+	repeated WorkSessionDTO items = 1;
+}
+
+message NullableWorkSessionDTO{
+	oneof kind{
+		google.protobuf.NullValue null = 1;
+		WorkSessionDTO worksession = 2;
+	}
+}
+
+message UnitDTO{
+	string name = 1;
+	WorkSessions worksessions = 2;
+	bool inuse = 3;
+	NullableString manufacturer = 4;
+	NullableString description = 5;
+	NullableWorkSessionDTO currentworksession = 6;
+}
+
+message Units{
+	repeated UnitDTO items = 1;
+}
+
+message NullableUnitDTO{
+	oneof kind{
+		google.protobuf.Empty null = 1;
+		UnitDTO unit = 2;
+	}
+}
+
+message WorkCenterDTO{
+	string name = 1;
+	NullableString description = 2;
+	WorkMode workmode = 3;
+	Units units = 4;
+}
+
+message WorkCenters{
+	repeated WorkCenterDTO items = 1;
+}
+
+message NullableWorkCenterDTO{
+	oneof kind{
+		google.protobuf.Empty null = 1;
+		WorkCenterDTO workcenter = 2;
+	}
+}
+
+message AreaDTO{
+	string name = 1;
+	WorkCenters workcenters = 2;
+}
+
+message Areas{
+	repeated AreaDTO items = 1;
+}
+
+message NullableAreaDTO{
+	oneof kind{
+		google.protobuf.Empty null = 1;
+		AreaDTO area = 2;
+	}
+}
+
+message SiteDTO{
+	Guid id = 1;
+	string name = 2;
+	Location location = 3;
+	NullableEmail email = 4;
+	NullablePhone phone = 5;
+}
+
+message Sites{
+	repeated SiteDTO items = 1;
+}
+
+message NullableSiteDTO{
+	oneof kind{
+		google.protobuf.Empty null = 1;
+		SiteDTO site = 2;
+	}
+}

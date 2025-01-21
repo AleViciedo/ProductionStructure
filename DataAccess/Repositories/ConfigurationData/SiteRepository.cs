@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace ProductionStructure.DataAccess.Repositories.ConfigurationData
 {
     public class SiteRepository
-        : RepositoryBase, ISitesRepository
+        : RepositoryBase, ISiteRepository
     {
         public SiteRepository(ApplicationContext context)
             : base(context) { }

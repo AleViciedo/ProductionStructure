@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "ProductionStructure.GrpcProtos";
+
+package GrpcProtos;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "Common/common.proto";
+import "Common/entities.proto";
+
+service Area{
+	rpc CreateArea (CreateAreaRequest) returns (AreaDTO);
+	rpc GetArea (GetRequest) returns (NullableAreaDTO);
+	rpc GetAllAreas (google.protobuf.Empty) returns (Areas);
+	rpc UpdateArea (AreaDTO) returns (google.protobuf.Empty);
+	rpc DeleteArea (DeleteRequest) returns (google.protobuf.Empty);
+}
+
+message CreateAreaRequest{
+	string name = 1;
+	SiteDTO site = 2;
+}

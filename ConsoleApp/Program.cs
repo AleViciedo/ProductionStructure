@@ -8,6 +8,7 @@ using ProductionStructure.Domain.Entity.HistoricalData;
 using ProductionStructure.DataAccess;
 using ProductionStructure.DataAccess.Repositories.ConfigurationData;
 using ProductionStructure.DataAccess.Repositories.HistoricalData;
+using CountryData.Standard;
 
 namespace ProductionStructure.ConsoleApp
 {

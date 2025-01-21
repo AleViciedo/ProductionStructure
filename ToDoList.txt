@@ -1,8 +1,9 @@
 ﻿	Rehacer los constructores del Domain para eliminar los innecesarios. Usar parametros por defecto
  √	Revisar la configuracion de llaves foraneas. Eliminar si no son necesarias. Si no, agregar llaves principales.
 		Rechequear tras migracion
-	Agregar logica siguiente usando un Servicio:
+ √	Agregar logica siguiente usando un Servicio:
 		Agregar en el ApplicationContext la logica de agregar una WorkSession cuando se marque una Unit como InUse. Podria hacerse creando una sobrecarga de Update para que cuando el Unit se ponga en uso cree y agregue a la DB la WorkSession. Si no, entonces con una sobrecarga de Add.
 			El metodo Update que desmarque la Unit como InUse debe primero actualizar la WorkSession
 			Todo esto significa que la WorkSession en si puede actualizarse (modificarse) directamente o por defecto de la actualizacion de su Unit
-	Terminar las pruebas de la DB en ConsoleApp.
+ √	Terminar las pruebas de la DB en ConsoleApp.
+	Revisar que se agregue InitDate a la tabla de WorkSession
