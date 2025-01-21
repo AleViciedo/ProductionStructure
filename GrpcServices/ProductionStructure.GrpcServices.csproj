@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.27.2" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.63.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.27" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\ProductionStructure.Contracts.csproj" />
+    <ProjectReference Include="..\DataAccess\ProductionStructure.DataAccess.csproj" />
+    <ProjectReference Include="..\GrpcProtos\ProductionStructure.GrpcProtos.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ProductionStructure.GrpcProtos">
+      <HintPath>..\GrpcProtos\bin\Debug\net6.0\ProductionStructure.GrpcProtos.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Common\" />
+  </ItemGroup>
+
+</Project>

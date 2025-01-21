@@ -2,7 +2,7 @@ using ProductionStructure.Domain.Entity.ConfigurationData;
 
 namespace ProductionStructure.Contracts.ConfigurationData
 {
-    public interface ISitesRepository
+    public interface ISiteRepository
     {
         void AddSite(Site site);
 
