@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductionStructure.Application.ConfigurationData.Sites.Commands.CreateWorkSession
+namespace ProductionStructure.Application.ConfigurationData.Sites.Commands.CreateWorkCenter
 {
     public record CreateSiteCommand(string Name, Location Location) : ICommand<Site>;
 }

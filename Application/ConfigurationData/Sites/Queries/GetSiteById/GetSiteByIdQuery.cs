@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace ProductionStructure.Application.ConfigurationData.Sites.Queries.GetSiteById
 {
-    public record GetSiteById(Guid Id) : IQuery<Site?>;
+    public record GetSiteByIdQuery(Guid Id) : IQuery<Site?>;
 }

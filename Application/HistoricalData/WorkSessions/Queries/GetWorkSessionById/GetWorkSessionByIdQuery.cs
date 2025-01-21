@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace ProductionStructure.Application.HistoricalData.WorkSessions.Queries.GetWorkSessionById
 {
-    public record GetWorkSessionById(Guid Id) :IQuery<WorkSession?>;
+    public record GetWorkSessionByIdQuery(Guid Id) :IQuery<WorkSession?>;
 }

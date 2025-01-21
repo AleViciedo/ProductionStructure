@@ -8,5 +8,5 @@ using ProductionStructure.Domain.Entity.ConfigurationData;
 
 namespace ProductionStructure.Application.ConfigurationData.Areas.Queries.GetAreaById
 {
-    public record GetAreaById(Guid Id) : IQuery<Area?>;
+    public record GetAreaByIdQuery(Guid Id) : IQuery<Area?>;
 }

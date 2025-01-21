@@ -11,6 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Contracts\ProductionStructure.Contracts.csproj" />
+    <ProjectReference Include="..\DataAccess\ProductionStructure.DataAccess.csproj" />
     <ProjectReference Include="..\Domain\ProductionStructure.Domain.csproj" />
   </ItemGroup>
 

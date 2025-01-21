@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductionStructure.Application.ConfigurationData.WorkCenter.Queries.GetWorkCenterById
+namespace ProductionStructure.Application.ConfigurationData.WorkCenters.Queries.GetWorkCenterById
 {
-    public record GetWorkCenterById(Guid Id) : IQuery<Domain.Entity.ConfigurationData.WorkCenter?>;
+    public record GetWorkCenterByIdQuery(Guid Id) : IQuery<WorkCenter?>;
 }

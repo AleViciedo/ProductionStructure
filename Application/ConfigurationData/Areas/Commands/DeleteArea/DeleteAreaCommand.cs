@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductionStructure.Application.ConfigurationData.Areas.Commands.DeleteWorkSession
+namespace ProductionStructure.Application.ConfigurationData.Areas.Commands.DeleteWorkCenter
 {
     public record DeleteAreaCommand(Guid Id) : ICommand;
 }

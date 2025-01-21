@@ -9,5 +9,5 @@ using System.Threading.Tasks;
 
 namespace ProductionStructure.Application.ConfigurationData.Units.Queries.GetUnitById
 {
-    public record GetUnitById(Guid Id) : IQuery<Unit?>;
+    public record GetUnitByIdQuery(Guid Id) : IQuery<Unit?>;
 }
