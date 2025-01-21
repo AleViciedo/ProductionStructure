@@ -140,5 +140,62 @@ namespace ProductionStructure.UnitTestsUnit
     [TestClass]
     public class UnitTests
     {
+
+
+        //Constructor
+        [TestMethod]
+        public void ConstructorUnit()
+        {
+            //Arrange 
+            Location Location1 = new Location(new CountryData.Standard.Country(), "Ciudad de las risas", "Calle 48 #4893 % C y D");
+            Site Site1 = new Site("Fabrica de cosas", Location1, new Email("FabricaDeCosas", "ServerLibre.com"), new PhoneNumber("+5375342918"), new List<Area>());
+            Area Area1 = new Area("Area de materias primas", Site1, new List<WorkCenter>());
+
+            
+            Guid workCenterID = Guid.NewGuid();
+            WorkCenter workCenter = new WorkCenter("Derivados naturales", "Recibe y procesa componentes naturales para generar materias primas", Domain.Types.WorkMode.PerLot, Area1, new List<Unit>())
+            {
+            Id = workCenterID
+            };
+
+            //Act
+            Unit unit = new Unit(name, workCenter);
+
+            //Assert
+            Assert.AreEqual(name,  unit.Name);
+            Assert.AreEqual(workCenterID, unit.WorkCenter);
+
+        }
+        //In Use
+        [TestMethod]
+        public void TestMarkAsInUse()
+        {
+            //Arrange
+            WorkCenter workCenter = new WorkCenter
+            {
+                Id = Guid.NewGuid()
+            };
+            Unit unit = new Unit("Unit",workCenter);
+            unit.WorkSessions = new List<WorkSession>();
+
+            //Act
+            unit.MarkAsInUse();
+
+            //Assert
+            Assert.IsNotNull(unit.CurrentWorkSession);
+            Assert.AreEqual(1, unit.WorkSessions.Count);
+            Assert.AreEqual(unit.WorkSessions[0],unit.CurrentWorkSession);
+            Assert.IsTrue(unit.InUse);
+                           
+        }
+
+        //Not in Use
+        [TestMethod]
+        public void TesteMarkAsNotInUse
+        {
+
+        }
+
+
     }
 }
