@@ -7,16 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ConfigurationData\Areas\" />
-    <Folder Include="ConfigurationData\" />
-    <Folder Include="HistoricalData\" />
-    <Folder Include="ConfigurationData\Sites\" />
-    <Folder Include="ConfigurationData\WorkCenters\" />
-    <Folder Include="ConfigurationData\Units\" />
-    <Folder Include="HistoricalData\WorkSessions\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MediatR" Version="12.3.0" />
   </ItemGroup>
 
