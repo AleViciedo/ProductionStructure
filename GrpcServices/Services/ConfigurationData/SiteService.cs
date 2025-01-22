@@ -1,6 +1,6 @@
-﻿using Contracts;
-using Google.Protobuf.WellKnownTypes;
+﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
+using ProductionStructure.Contracts;
 using ProductionStructure.Contracts.ConfigurationData;
 using ProductionStructure.Contracts.HistoricalData;
 using ProductionStructure.GrpcProtos;

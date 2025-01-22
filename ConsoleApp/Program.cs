@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
-using DataAccess.Context;
 using ProductionStructure.Domain.Entity.ConfigurationData;
 using ProductionStructure.Domain.ValueObjects;
 using ProductionStructure.Domain.Entity.HistoricalData;
@@ -9,13 +8,146 @@ using ProductionStructure.DataAccess;
 using ProductionStructure.DataAccess.Repositories.ConfigurationData;
 using ProductionStructure.DataAccess.Repositories.HistoricalData;
 using CountryData.Standard;
+using ProductionStructure.GrpcProtos;
+using Grpc.Net.Client;
+using Google.Protobuf.WellKnownTypes;
+using System.ComponentModel.DataAnnotations.Schema;
+using ProductionStructure.DataAccess.Context;
 
 namespace ProductionStructure.ConsoleApp
 {
     internal class Program
     {
+        
         static void Main(string[] args)
         {
+            #region Area Interfaz
+            Console.WriteLine("Presione una tecla para conectar");
+            Console.ReadKey();
+
+            Console.WriteLine("Creating channel and client");
+            var httpHandler = new HttpClientHandler();
+            httpHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+            var channel = GrpcChannel.ForAddress("http://localhost:5051", new GrpcChannelOptions { HttpHandler = httpHandler });
+            if (channel is null)
+            {
+                Console.WriteLine("Cannot connect");
+                channel.Dispose();
+                return;
+            }
+
+            var site = new ProductionStructure.GrpcProtos.Area.AreaClient(channel);
+
+            Console.WriteLine("Presione una tecla para crear un area");
+            Console.ReadKey();
+            var createResponse = site.CreateArea(new CreateAreaRequest()
+            {
+                Name = "Area54"
+            });
+
+            if (createResponse is null)
+            {
+                Console.WriteLine("Cannot create area");
+                channel?.Dispose();
+                return;
+            }
+            else
+            {
+                Console.WriteLine($"Successful creation");
+            }
+
+            Console.WriteLine("Presione una tecla para obtener todas las areas");
+            Console.ReadKey();
+            var getResponse = GetAllAreas(new Google.Protobuf.WellKnownTypes.Empty());
+            if (getResponse is null)
+            {
+                Console.WriteLine("Cannot get areas");
+                channel.Dispose();
+                return;
+            }
+            else
+            {
+                Console.WriteLine($"Obtencion exitosa de {getResponse} areas");
+            }
+
+            Console.WriteLine($"Presione una tecla para obtener un Area por Id{getResponse.Id} ");
+
+            Console.WriteLine("Presione una tecla para eliminar el area");
+            Console.ReadKey();
+
+            site.DeleteArea(new DeleteRequest){ Id = createResponse.Id});
+            var deletedGetResponse = site.GetArea(new GetRequest() { Id = createResponse.Id });
+            if(deletedGetResponse is null || deletedGetResponse.KindCase != NullableAreaDTO.KindOneofCase.Area)
+            {
+                Console.WriteLine($"Successful elimation");
+            }
+            channel.Dispose() ;
+            #endregion
+            /////////////////////////////////////////////////////////////////////////////////////////////Verificar 
+            #region WorkCenter Interfaz
+            Console.WriteLine("Presione una tecla para conectar");
+            Console.ReadKey();
+
+            Console.WriteLine("Creating channel and client");
+            var httpHandler2 = new HttpClientHandler();
+            httpHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+            var channel2 = GrpcChannel.ForAddress("http://localhost:5051", new GrpcChannelOptions { HttpHandler = httpHandler2 });
+            if (channel2 is null)
+            {
+                Console.WriteLine("Cannot connect");
+                channel2.Dispose();
+                return;
+            }
+
+            var area = new ProductionStructure.GrpcProtos.WorkCenter.WorkCenterClient(channel2);
+
+            Console.WriteLine("Presione una tecla para crear un Centro de Trabajo");
+            Console.ReadKey();
+            var createResponse1 = area.CreateWorkCenter(new CreateWorkCenterRequest()
+            {
+                Name = "WorkCenter1"
+                Description // Crear una descripcion y un modo de trabajo dentro del metodo CreatWorkCenterRequest
+            }); ;
+
+            if (createResponse1 is null)
+            {
+                Console.WriteLine("Cannot create Work Center");
+                channel2?.Dispose();
+                return;
+            }
+            else
+            {
+                Console.WriteLine($"Successful creation");
+            }
+
+            Console.WriteLine("Presione una tecla para obtener todas los Centros de Trabajos");
+            Console.ReadKey();
+            var getResponse1 = GetAllWorkCenters(new Google.Protobuf.WellKnownTypes.Empty());
+            if (getResponse1 is null)
+            {
+                Console.WriteLine("Cannot get WorkCenter");
+                channel2.Dispose();
+                return;
+            }
+            else
+            {
+                Console.WriteLine($"Obtencion exitosa de {getResponse1} WorkCenter");
+            }
+
+            Console.WriteLine($"Presione una tecla para obtener un WorkCenter por Id{getResponse1.Id} ");
+
+            Console.WriteLine("Presione una tecla para eliminar el WorkCenter");
+            Console.ReadKey();
+
+            area.DeleteWorkCenter(new DeleteRequest{ Id = createResponse1.Id});
+            var deletedGetResponse1 = area.CreateWorkCenter(new GetRequest() { Id = createResponse1.Id });
+            if (deletedGetResponse1 is null || deletedGetResponse1.KindCase != NullableWorkCenterDTO.KindOneofCase.WorkCenter)//BAteo
+            {
+                Console.WriteLine($"Successful elimation");
+            }
+            channel.Dispose();
+            #endregion
+
             #region Example DB
             ApplicationContext context = new ApplicationContext("Data Source=ProductionStructureDB.sqlite");
             if (!context.Database.CanConnect())
@@ -191,6 +323,11 @@ namespace ProductionStructure.ConsoleApp
 
             Console.ReadLine();
             #endregion
+        }
+
+        private static object GetAllAreas(Empty empty)
+        {
+            throw new NotImplementedException();
         }
     }
 }

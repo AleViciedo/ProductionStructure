@@ -1,6 +1,6 @@
 using ProductionStructure.Domain.Entity.ConfigurationData;
 
-namespace Contracts
+namespace ProductionStructure.Contracts.ConfigurationData
 {
     public interface IAreaRepository
     {

@@ -1,4 +1,4 @@
-﻿namespace Contracts
+﻿namespace ProductionStructure.Contracts
 {
     public interface IUnitOfWork
     {

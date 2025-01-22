@@ -13,7 +13,7 @@ using ProductionStructure.Domain.Entity.ConfigurationData;
 using ProductionStructure.Domain.Entity.HistoricalData;
 
 
-namespace DataAccess.Context
+namespace ProductionStructure.DataAccess.Context
 {
     public class ApplicationContext : DbContext
     {
@@ -63,7 +63,7 @@ namespace DataAccess.Context
         #region Helpers
         private static DbContextOptions GetOptions(string connectionString)
         {
-            return SqliteDbContextOptionsBuilderExtensions.UseSqlite(new DbContextOptionsBuilder(), connectionString).Options;
+            return new DbContextOptionsBuilder().UseSqlite(connectionString).Options;
         }
         #endregion
     }

@@ -1,6 +1,6 @@
-﻿using Contracts;
-using DataAccess.Context;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductionStructure.Contracts;
+using ProductionStructure.DataAccess.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;

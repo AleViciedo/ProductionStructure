@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductionStructure.Application.ConfigurationData.Units.Commands.CreateWorkCenter
+namespace ProductionStructure.Application.ConfigurationData.Units.Commands.CreateUnit
 {
-    public record CreateUnitCommand(string Name, Domain.Entity.ConfigurationData.WorkCenter WorkCenter) : ICommand<Unit>;
+    public record CreateUnitCommand(string Name, WorkCenter WorkCenter) : ICommand<Unit>;
 }

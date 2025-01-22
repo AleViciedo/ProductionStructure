@@ -1,6 +1,6 @@
-﻿using Contracts;
-using ProductionStructure.Application.Abstract;
+﻿using ProductionStructure.Application.Abstract;
 using ProductionStructure.Application.ConfigurationData.WorkCenters.Queries.GetWorkCenterById;
+using ProductionStructure.Contracts.ConfigurationData;
 using ProductionStructure.Contracts.HistoricalData;
 using ProductionStructure.Domain.Entity.ConfigurationData;
 using ProductionStructure.Domain.Entity.HistoricalData;

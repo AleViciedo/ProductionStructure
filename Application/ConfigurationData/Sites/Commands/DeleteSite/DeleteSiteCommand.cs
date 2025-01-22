@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductionStructure.Application.ConfigurationData.Sites.Commands.DeleteWorkCenter
+namespace ProductionStructure.Application.ConfigurationData.Sites.Commands.DeleteSite
 {
     public record DeleteSiteCommand(Guid Id) : ICommand;
 }

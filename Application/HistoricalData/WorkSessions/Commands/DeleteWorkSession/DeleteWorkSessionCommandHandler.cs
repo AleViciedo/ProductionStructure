@@ -1,6 +1,6 @@
-﻿using Contracts;
-using ProductionStructure.Application.Abstract;
+﻿using ProductionStructure.Application.Abstract;
 using ProductionStructure.Application.HistoricalData.WorkSessions.Commands.UpdateWorkSession;
+using ProductionStructure.Contracts;
 using ProductionStructure.Contracts.HistoricalData;
 using ProductionStructure.Domain.Entity.HistoricalData;
 using System;

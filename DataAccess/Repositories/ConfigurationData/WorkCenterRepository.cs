@@ -1,13 +1,13 @@
-using DataAccess.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccess;
-using Contracts;
 using ProductionStructure.DataAccess.Repositories.Common;
 using ProductionStructure.Domain.Entity.ConfigurationData;
+using ProductionStructure.Contracts.ConfigurationData;
+using ProductionStructure.DataAccess.Context;
 
 namespace ProductionStructure.DataAccess.Repositories.ConfigurationData
 {

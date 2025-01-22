@@ -8,7 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\ProductionStructure.Application.csproj" />
+    <ProjectReference Include="..\ConsoleClient\ProductionStructure.ConsoleClient.csproj" />
+    <ProjectReference Include="..\Contracts\ProductionStructure.Contracts.csproj" />
     <ProjectReference Include="..\DataAccess\ProductionStructure.DataAccess.csproj" />
+    <ProjectReference Include="..\Domain\ProductionStructure.Domain.csproj" />
+    <ProjectReference Include="..\GrpcProtos\ProductionStructure.GrpcProtos.csproj" />
+    <ProjectReference Include="..\GrpcServices\ProductionStructure.GrpcServices.csproj" />
   </ItemGroup>
 
 </Project>
