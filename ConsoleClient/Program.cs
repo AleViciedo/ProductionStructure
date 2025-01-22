@@ -3,6 +3,8 @@ using System;
 using System.Globalization;
 using ProductionStructure.GrpcProtos;
 using Google.Protobuf.WellKnownTypes;
+using System.Security.Cryptography.X509Certificates;
+using CountryData.Standard;
 
 namespace ProductionStructure.ConsoleClient
 {
@@ -36,6 +38,40 @@ namespace ProductionStructure.ConsoleClient
             {
                 Initdate = Timestamp.FromDateTime(DateTime.Now)
             });
+
+            #region Menu
+            #endregion
+
+            #region Functions CRUD
+                #region Site
+            //static void CreateSite(GrpcChannel channel)
+            //{
+            //    var siteClient =new Site.SiteClient(channel);
+
+            //    string siteName;
+            //    //Country country;
+            //    string city;
+            //    string address;
+
+            //    Console.WriteLine("Name:\n");
+            //    siteName = Console.ReadLine();
+            //    Console.WriteLine("Country Short Code:\n");
+                 
+            //}
+                #endregion
+
+                #region Area
+                #endregion
+
+                #region WorkCenter
+                #endregion
+
+                #region Unit
+                #endregion
+
+                #region WorkSession
+                #endregion
+            #endregion
         }
     }
     
