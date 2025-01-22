@@ -13,7 +13,7 @@ import "Common/entities.proto";
 
 service WorkSession{
 	rpc CreateWorkSession (CreateWorkSessionRequest) returns (WorkSessionDTO);
-	rpc GetWorkSession (GetRequest) returns (NullableWorkSessionDTO);
+	rpc GetWorkSessionById (GetRequest) returns (NullableWorkSessionDTO);
 	rpc GetAllWorkSessions (google.protobuf.Empty) returns (WorkSessions);
 	rpc UpdateWorkSession (WorkSessionDTO) returns (google.protobuf.Empty);
 	rpc DeleteWorkSession (DeleteRequest) returns (google.protobuf.Empty);

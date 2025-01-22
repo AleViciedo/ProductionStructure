@@ -25,6 +25,8 @@ builder.Services.AddScoped<IWorkCenterRepository, WorkCenterRepository>();
 builder.Services.AddScoped<IUnitRepository, UnitRepository>();
 builder.Services.AddScoped<IWorkSessionRepository, WorkSessionRepository>();
 
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

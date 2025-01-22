@@ -12,7 +12,7 @@ import "Common/entities.proto";
 
 service Unit{
 	rpc CreateUnit (CreateUnitRequest) returns (UnitDTO);
-	rpc GetUnit (GetRequest) returns (NullableUnitDTO);
+	rpc GetUnitById (GetRequest) returns (NullableUnitDTO);
 	rpc GetAllUnits (google.protobuf.Empty) returns (Units);
 	rpc UpdateUnit (UnitDTO) returns (google.protobuf.Empty);
 	rpc DeleteUnit (DeleteRequest) returns (google.protobuf.Empty);

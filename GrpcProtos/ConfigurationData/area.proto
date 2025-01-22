@@ -12,7 +12,7 @@ import "Common/entities.proto";
 
 service Area{
 	rpc CreateArea (CreateAreaRequest) returns (AreaDTO);
-	rpc GetArea (GetRequest) returns (NullableAreaDTO);
+	rpc GetAreaById (GetRequest) returns (NullableAreaDTO);
 	rpc GetAllAreas (google.protobuf.Empty) returns (Areas);
 	rpc UpdateArea (AreaDTO) returns (google.protobuf.Empty);
 	rpc DeleteArea (DeleteRequest) returns (google.protobuf.Empty);

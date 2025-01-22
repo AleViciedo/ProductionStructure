@@ -13,12 +13,12 @@ import "Common/common.proto";
 message WorkSessionDTO{
 	Guid id = 1;
 	google.protobuf.Timestamp initdate = 2;
-	message enddate{
-		oneof kind{
-				google.protobuf.NullValue null = 1;
-				google.protobuf.Timestamp enddate = 2;
-		}
+	oneof kind{
+		google.protobuf.NullValue null = 3;
+		google.protobuf.Timestamp enddate = 4;
 	}
+	UnitDTO unit = 5;
+	Guid unitid = 6;
 }
 
 message WorkSessions{
@@ -39,6 +39,10 @@ message UnitDTO{
 	NullableString manufacturer = 4;
 	NullableString description = 5;
 	NullableWorkSessionDTO currentworksession = 6;
+	NullableGuid currentworksessionid = 7;
+	WorkCenterDTO workcenter = 8;
+	Guid workcenterid = 9;
+	Guid id = 10;
 }
 
 message Units{
@@ -57,6 +61,9 @@ message WorkCenterDTO{
 	NullableString description = 2;
 	WorkMode workmode = 3;
 	Units units = 4;
+	AreaDTO area = 5;
+	Guid areaid = 6;
+	Guid id = 7;
 }
 
 message WorkCenters{
@@ -73,6 +80,9 @@ message NullableWorkCenterDTO{
 message AreaDTO{
 	string name = 1;
 	WorkCenters workcenters = 2;
+	SiteDTO site = 3;
+	Guid siteid = 4;
+	Guid id = 5;
 }
 
 message Areas{
@@ -91,7 +101,8 @@ message SiteDTO{
 	string name = 2;
 	Location location = 3;
 	NullableEmail email = 4;
-	NullablePhone phone = 5;
+	NullablePhone phonenumber = 5;
+	Areas areas = 6;
 }
 
 message Sites{

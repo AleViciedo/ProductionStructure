@@ -62,6 +62,13 @@ message Guid{
 	string value = 1;
 }
 
+message NullableGuid{
+	oneof kind{
+		google.protobuf.Empty null = 1;
+		Guid id = 2;
+	}
+}
+
 message NullableString{
 	oneof kind{
 		google.protobuf.NullValue null = 1;

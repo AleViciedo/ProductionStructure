@@ -12,7 +12,7 @@ import "Common/entities.proto";
 
 service WorkCenter{
 	rpc CreateWorkCenter (CreateWorkCenterRequest) returns (WorkCenterDTO);
-	rpc GetWorkCenter (GetRequest) returns (NullableWorkCenterDTO);
+	rpc GetWorkCenterById (GetRequest) returns (NullableWorkCenterDTO);
 	rpc GetAllWorkCenters (google.protobuf.Empty) returns (WorkCenters);
 	rpc UpdateWorkCenter (WorkCenterDTO) returns (google.protobuf.Empty);
 	rpc DeleteWorkCenter (DeleteRequest) returns (google.protobuf.Empty);

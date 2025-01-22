@@ -12,7 +12,7 @@ import "Common/entities.proto";
 
 service Site{
 	rpc CreateSite (CreateSiteRequest) returns (SiteDTO);
-	rpc GetSite (GetRequest) returns (NullableSiteDTO);
+	rpc GetSiteById (GetRequest) returns (NullableSiteDTO);
 	rpc GetAllSites (google.protobuf.Empty) returns (Sites);
 	rpc UpdateSite (SiteDTO) returns (google.protobuf.Empty);
 	rpc DeleteSite (DeleteRequest) returns (google.protobuf.Empty);
